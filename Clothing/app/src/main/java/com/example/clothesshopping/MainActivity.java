@@ -14,10 +14,7 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
-//Search from MainActivity adapeted from here https://abhiandroid.com/ui/searchview
-
-//Implementing Search https://developer.android.com/guide/topics/search/search-dialog
-// https://developer.android.com/training/search/setup
+//Search from MainActivity https://abhiandroid.com/ui/searchview
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     // Declare Variables

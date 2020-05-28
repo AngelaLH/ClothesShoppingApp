@@ -1,86 +1,92 @@
 package com.example.clothesshopping;
 
 //Adapted from https://www.vogella.com/tutorials/AndroidRecyclerView/article.html
-import java.util.ArrayList;
-import java.util.List;
-
+//now adapted from https://codingwithmitch.com/blog/android-recyclerview-onclicklistener/
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> values;
+import com.bumptech.glide.Glide;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView txtHeader;
-        public TextView txtFooter;
-        public View layout;
+import org.w3c.dom.Text;
 
-        public ViewHolder(View v) {
-            super(v);
-            layout = v;
-            txtHeader = (TextView) v.findViewById(R.id.firstLine);
-            txtFooter = (TextView) v.findViewById(R.id.secondLine);
-        }
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+
+    private static final String TAG = "RecyclerViewAdapter";
+
+    private ArrayList<String> mImageNames = new ArrayList<>();
+    private ArrayList<String> mImages = new ArrayList<>();
+    private Context mContext;
+
+    public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images ) {
+        mImageNames = imageNames;
+        mImages = images;
+        mContext = context;
     }
 
-    public void add(int position, String item) {
-        values.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public void remove(int position) {
-        values.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<String> myDataset) {
-        values = myDataset;
-    }
-
-    // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
-        // create a new view
-        LayoutInflater inflater = LayoutInflater.from(
-                parent.getContext());
-        View v =
-                inflater.inflate(R.layout.row_layout, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        final String name = values.get(position);
-        holder.txtHeader.setText(name);
-        holder.txtHeader.setOnClickListener(new OnClickListener() {
+        Log.d(TAG, "onBindViewHolder: called.");
+
+        Glide.with(mContext)
+                .asBitmap()
+                .load(mImages.get(position))
+                .into(holder.image);
+
+        holder.imageName.setText(mImageNames.get(position));
+
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                remove(position);
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
+
+                Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(mContext, GalleryActivity.class);
+                intent.putExtra("image_url", mImages.get(position));
+                intent.putExtra("image_name", mImageNames.get(position));
+                mContext.startActivity(intent);
             }
         });
-
-        holder.txtFooter.setText("Footer: " + name);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return values.size();
+        return mImageNames.size();
     }
 
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        CircleImageView image;
+        TextView imageName;
+        RelativeLayout parentLayout;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.image);
+            imageName = itemView.findViewById(R.id.image_name);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
+        }
+    }
 }
