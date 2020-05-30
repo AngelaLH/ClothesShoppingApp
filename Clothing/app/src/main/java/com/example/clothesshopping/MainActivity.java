@@ -1,20 +1,15 @@
 package com.example.clothesshopping;
 
-import android.app.Activity;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SearchView;
+import com.example.clothesshopping.AnimalNames;
+import com.example.clothesshopping.ListViewAdapter;
+import 	androidx.appcompat.app.AppCompatActivity;
+import com.example.clothesshopping.R;
 
 import java.util.ArrayList;
-
-//Search from MainActivity https://abhiandroid.com/ui/searchview
+//for search
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     // Declare Variables

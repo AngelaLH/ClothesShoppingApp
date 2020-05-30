@@ -1,22 +1,15 @@
 package com.example.clothesshopping;
 
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //List Activity with RecyclerView connected
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -74,7 +67,11 @@ public class ListActivity extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView: init recyclerview.");
         RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(getAdapter(adapter));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private RecyclerView.Adapter getAdapter(RecyclerViewAdapter adapter) {
+        return adapter;
     }
 }
