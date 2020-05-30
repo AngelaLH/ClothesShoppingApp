@@ -2,6 +2,7 @@ package com.example.clothesshopping;
 
 //Adapted from https://www.vogella.com/tutorials/AndroidRecyclerView/article.html
 //now adapted from https://codingwithmitch.com/blog/android-recyclerview-onclicklistener/
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -11,14 +12,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;
-
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
