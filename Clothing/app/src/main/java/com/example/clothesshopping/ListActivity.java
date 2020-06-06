@@ -2,18 +2,18 @@ package com.example.clothesshopping;
 
 
 import android.os.Bundle;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 //List Activity with RecyclerView connected
-import android.util.Log;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class ListActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "ListActivity";
 
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
@@ -22,7 +22,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.list_activity);
         Log.d(TAG, "onCreate: started.");
 
         initImageBitmaps();
