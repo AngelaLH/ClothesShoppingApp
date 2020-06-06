@@ -32,6 +32,6 @@
             android:layout_below="@id/name"
             android:layout_toRightOf="@id/thumbnail"
             android:textColor="@color/contact_number"
-            android:textSize="@dimen/contact_number" />
+            android:textSize="@dimen/contact_number"/>
 
 </RelativeLayout>
