@@ -15,7 +15,7 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details);
+        setContentView(R.layout.activity_gallery);
         Log.d(TAG, "onCreate: started.");
 
         getIncomingIntent();
