@@ -1,73 +1,78 @@
 package com.example.clothesshopping;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-//List Activity with RecyclerView connected
-
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
-
-    //vars
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
-
+public class MainActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
+    public static final String EXTRA_URL = "imageUrl";
+    public static final String EXTRA_CREATOR = "creatorName";
+    public static final String EXTRA_LIKES = "likeCount";
+    private RecyclerView mRecyclerView;
+    private ExampleAdapter mExampleAdapter;
+    private ArrayList<ExampleItem> mExampleList;
+    private RequestQueue mRequestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: started.");
-
-        initImageBitmaps();
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mExampleList = new ArrayList<>();
+        mRequestQueue = Volley.newRequestQueue(this);
+        parseJSON();
     }
-
-    private void initImageBitmaps(){
-        Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
-
-        mImageUrls.add("https://c1.staticflickr.com/5/4636/25316407448_de5fbf183d_o.jpg");
-        mNames.add("Havasu Falls");
-
-        mImageUrls.add("https://i.redd.it/tpsnoz5bzo501.jpg");
-        mNames.add("Trondheim");
-
-        mImageUrls.add("https://i.redd.it/qn7f9oqu7o501.jpg");
-        mNames.add("Portugal");
-
-        mImageUrls.add("https://i.redd.it/j6myfqglup501.jpg");
-        mNames.add("Rocky Mountain National Park");
-
-
-        mImageUrls.add("https://i.redd.it/0h2gm1ix6p501.jpg");
-        mNames.add("Mahahual");
-
-        mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg");
-        mNames.add("Frozen Lake");
-
-
-        mImageUrls.add("https://i.redd.it/glin0nwndo501.jpg");
-        mNames.add("White Sands Desert");
-
-        mImageUrls.add("https://i.redd.it/obx4zydshg601.jpg");
-        mNames.add("Austrailia");
-
-        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
-        mNames.add("Washington");
-
-        initRecyclerView();
+    private void parseJSON() {
+        String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("hits");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject hit = jsonArray.getJSONObject(i);
+                                String creatorName = hit.getString("user");
+                                String imageUrl = hit.getString("webformatURL");
+                                int likeCount = hit.getInt("likes");
+                                mExampleList.add(new ExampleItem(imageUrl, creatorName, likeCount));
+                            }
+                            mExampleAdapter = new ExampleAdapter(MainActivity.this, mExampleList);
+                            mRecyclerView.setAdapter(mExampleAdapter);
+                            mExampleAdapter.setOnItemClickListener(MainActivity.this);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mRequestQueue.add(request);
     }
-
-    private void initRecyclerView(){
-        Log.d(TAG, "initRecyclerView: init recyclerview.");
-        RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    @Override
+    public void onItemClick(int position) {
+        Intent detailIntent = new Intent(this, DetailActivity.class);
+        ExampleItem clickedItem = mExampleList.get(position);
+        detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
+        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
+        detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());
+        startActivity(detailIntent);
     }
 }
