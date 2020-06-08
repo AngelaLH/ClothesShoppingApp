@@ -1,21 +1,25 @@
 package com.example.clothesshopping;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
+public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> implements Filterable {
     private Context mContext;
     private ArrayList<ExampleItem> mExampleList;
+    private ArrayList<ExampleItem> mExampleListAll;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -29,6 +33,8 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     public ExampleAdapter(Context context, ArrayList<ExampleItem> exampleList) {
         mContext = context;
         mExampleList = exampleList;
+        mExampleListAll = new ArrayList<>();
+        mExampleListAll.addAll(exampleList);
     }
 
     @Override
@@ -79,4 +85,43 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             });
         }
     }
+
+    @Override
+    public Filter getFilter() {
+
+        return myFilter;
+    }
+
+    Filter myFilter = new Filter() {
+
+        //Automatic on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+
+            List<ExampleItem> filteredList = new ArrayList<>();
+
+            if (charSequence == null || charSequence.length() == 0) {
+                filteredList.addAll(mExampleListAll);
+            } else {
+                for (ExampleItem Example: mExampleListAll) {
+                    if (Example.getCreator().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        filteredList.add(Example);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        //Automatic on UI thread
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            mExampleList.clear();
+            mExampleList.addAll((Collection<? extends ExampleItem>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
 }
