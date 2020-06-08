@@ -3,25 +3,23 @@ package com.example.clothesshopping;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
-
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
 public class ListActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
     public static final String EXTRA_URL = "imageUrl";
     public static final String EXTRA_CREATOR = "creatorName";
@@ -33,11 +31,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra("MessageFromMainActivity");
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-
+        setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,4 +78,28 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());
         startActivity(detailIntent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mExampleAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }
