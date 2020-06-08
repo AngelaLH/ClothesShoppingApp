@@ -8,6 +8,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
@@ -16,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> implements Filterable {
+public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     private Context mContext;
     private ArrayList<ExampleItem> mExampleList;
     private ArrayList<ExampleItem> mExampleListAll;
@@ -38,52 +39,57 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     }
 
     @Override
-    public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.example_item, parent, false);
-        return new ExampleViewHolder(v);
+    public int getItemViewType(int position) {
+//        if (position % 2 == 0) {
+//            return 0;
+//        }
+//        return 1;
+
+        if (mExampleList.get(position).getCreator().toLowerCase().contains("a")) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @NonNull
+    @Override
+    public  RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view;
+
+        if (viewType == 0) {
+            view = layoutInflater.inflate(R.layout.example_item, parent, false);
+            return new ViewHolderOne(view);
+        }
+
+        view = layoutInflater.inflate(R.layout.another_row_item, parent, false);
+        return new ViewHolderTwo(view);
     }
 
     @Override
-    public void onBindViewHolder(ExampleViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ExampleItem currentItem = mExampleList.get(position);
 
         String imageUrl = currentItem.getImageUrl();
         String creatorName = currentItem.getCreator();
         int likeCount = currentItem.getLikeCount();
 
-        holder.mTextViewCreator.setText(creatorName);
-        holder.mTextViewLikes.setText("Likes: " + likeCount);
-        Picasso.get().load(imageUrl).fit().centerInside().into(holder.mImageView);
+        if (currentItem.getCreator().toLowerCase().contains("a")) {
+            ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
+            viewHolderOne.mTextViewCreator.setText(creatorName);
+            viewHolderOne.mTextViewLikes.setText("Likes: " + likeCount);
+            Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderOne.mImageView);
+        }else {
+            ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
+            viewHolderTwo.mTextViewCreator.setText(creatorName);
+            viewHolderTwo.mTextViewLikes.setText("Likes: " + likeCount);
+            Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderTwo.mImageView);
+        }
     }
 
     @Override
     public int getItemCount() {
         return mExampleList.size();
-    }
-
-    public class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
-        public TextView mTextViewCreator;
-        public TextView mTextViewLikes;
-
-        public ExampleViewHolder(View itemView) {
-            super(itemView);
-            mImageView = itemView.findViewById(R.id.image_view);
-            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
-            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            mListener.onItemClick(position);
-                        }
-                    }
-                }
-            });
-        }
     }
 
     @Override
@@ -123,5 +129,57 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             notifyDataSetChanged();
         }
     };
+
+    class ViewHolderOne extends RecyclerView.ViewHolder {
+
+        public ImageView mImageView;
+        public TextView mTextViewCreator;
+        public TextView mTextViewLikes;
+
+        public ViewHolderOne(View itemView) {
+            super(itemView);
+            mImageView = itemView.findViewById(R.id.image_view);
+            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
+            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    class ViewHolderTwo extends RecyclerView.ViewHolder {
+
+        public ImageView mImageView;
+        public TextView mTextViewCreator;
+        public TextView mTextViewLikes;
+
+        public ViewHolderTwo(View itemView) {
+            super(itemView);
+            mImageView = itemView.findViewById(R.id.image_view);
+            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
+            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+        }
+    }
 
 }
