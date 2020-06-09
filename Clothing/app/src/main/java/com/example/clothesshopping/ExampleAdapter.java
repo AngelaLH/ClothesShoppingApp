@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     private Context mContext;
-    private ArrayList<ClothingItem> mExampleList;
+    private ArrayList<ClothingItem> mCLothingList;
     private ArrayList<ClothingItem> mExampleListAll;
     private OnItemClickListener mListener;
 
@@ -33,7 +33,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     public ExampleAdapter(Context context, ArrayList<ClothingItem> exampleList) {
         mContext = context;
-        mExampleList = exampleList;
+        mCLothingList = exampleList;
         mExampleListAll = new ArrayList<>();
         mExampleListAll.addAll(exampleList);
     }
@@ -45,7 +45,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 //        }
 //        return 1;
 
-        if (mExampleList.get(position).getCreator().toLowerCase().contains("a")) {
+        if ( mCLothingList.get(position).getClotheName().toLowerCase().contains("a")) {
             return 0;
         }
         return 1;
@@ -68,28 +68,37 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ClothingItem currentItem = mExampleList.get(position);
+        ClothingItem currentItem = mCLothingList.get(position);
 
-        String imageUrl = currentItem.getImageUrl();
-        String creatorName = currentItem.getCreator();
-        String likeCount = currentItem.getLikeCount();
+        String imageUrl = currentItem.getImagefilename();
+        String creatorName = currentItem.getClotheName();
+        String likeCount = currentItem.getPrice();
 
-        if (currentItem.getCreator().toLowerCase().contains("a")) {
+        if (currentItem.getClotheName().toLowerCase().contains("a")) {
             ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
             viewHolderOne.mTextViewCreator.setText(creatorName);
-            viewHolderOne.mTextViewLikes.setText("Likes: " + likeCount);
-            Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderOne.mImageView);
+            viewHolderOne.mTextViewLikes.setText("Price: " + likeCount);
+            int i = mContext.getResources().getIdentifier(
+                    currentItem.getImagefilename(), "drawable",
+                    mContext.getPackageName());
+            viewHolderOne.mImageView.setImageResource(i);
+            //Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderOne.mImageView);
         }else {
             ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
             viewHolderTwo.mTextViewCreator.setText(creatorName);
-            viewHolderTwo.mTextViewLikes.setText("Likes: " + likeCount);
-            Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderTwo.mImageView);
+            viewHolderTwo.mTextViewLikes.setText("Price: " + likeCount);
+
+            int i = mContext.getResources().getIdentifier(
+                    currentItem.getImagefilename(), "drawable",
+                    mContext.getPackageName());
+            viewHolderTwo.mImageView.setImageResource(i);
+            //Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderTwo.mImageView);
         }
     }
 
     @Override
     public int getItemCount() {
-        return mExampleList.size();
+        return mCLothingList.size();
     }
 
     @Override
@@ -110,7 +119,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
                 filteredList.addAll(mExampleListAll);
             } else {
                 for (ClothingItem Example: mExampleListAll) {
-                    if (Example.getCreator().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                    if (Example.getClotheName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                         filteredList.add(Example);
                     }
                 }
@@ -124,8 +133,8 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         //Automatic on UI thread
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            mExampleList.clear();
-            mExampleList.addAll((Collection<? extends ClothingItem>) filterResults.values);
+            mCLothingList.clear();
+            mCLothingList.addAll((Collection<? extends ClothingItem>) filterResults.values);
             notifyDataSetChanged();
         }
     };

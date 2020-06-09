@@ -32,7 +32,7 @@
                         android:id="@+id/image_cat_1"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/image_1" />
+                        android:src="@drawable/bottom_4" />
 
                     <TextView
                         android:id="@+id/text_view_cat_1"
@@ -40,10 +40,72 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Not Cats Obviously"
+                        android:text="Bottoms"
                         android:textSize="20sp" />
 
                 </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_category2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/image_cat_2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/dress_1" />
+
+            <TextView
+                android:id="@+id/text_view_cat_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Dresses"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_category3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/image_cat_3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/top_1" />
+
+            <TextView
+                android:id="@+id/text_view_cat_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Tops"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

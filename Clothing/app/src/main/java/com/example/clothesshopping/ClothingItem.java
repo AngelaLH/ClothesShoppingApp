@@ -1,19 +1,23 @@
 package com.example.clothesshopping;
 
+import java.util.ArrayList;
+
 public class ClothingItem {
-    private String mImage;
-    private String mName;
+
+    //private ArrayList<String> mImagefilename_temp; //each clothing item has 3 images
+    private String mImagefilename;
+    private String mClotheName;
     private String mPrice;
-    public ClothingItem(String imageUrl, String creator, String likes) {
-        mImage = imageUrl;
-        mName = creator;
-        mPrice = likes;
+    public ClothingItem(String Imagefilename, String ClotheName, String Price) {
+        mImagefilename = Imagefilename;
+        mClotheName = ClotheName;
+        mPrice = Price;
     }
-    public String getImageUrl() {
-        return mImage;
+    public String getImagefilename() {
+        return mImagefilename;
     }
-    public String getCreator() { return mName; }
-    public String getLikeCount() {
+    public String getClotheName() { return mClotheName; }
+    public String getPrice() {
         return mPrice;
     }
 }
