@@ -28,7 +28,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     public static final String EXTRA_LIKES = "likeCount";
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
-    private ArrayList<ExampleItem> mExampleList;
+    private ArrayList<ClothingItem> mExampleList;
     private RequestQueue mRequestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
                                 String creatorName = hit.getString("user");
                                 String imageUrl = hit.getString("webformatURL");
                                 int likeCount = hit.getInt("likes");
-                                mExampleList.add(new ExampleItem(imageUrl, creatorName, likeCount));
+                                mExampleList.add(new ClothingItem(imageUrl, creatorName, String.valueOf(likeCount)));
                             }
                             mExampleAdapter = new ExampleAdapter(ListActivity.this, mExampleList);
                             mRecyclerView.setAdapter(mExampleAdapter);
@@ -79,7 +79,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     @Override
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(this, DetailActivity.class);
-        ExampleItem clickedItem = mExampleList.get(position);
+        ClothingItem clickedItem = mExampleList.get(position);
         detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
         detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
         detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());

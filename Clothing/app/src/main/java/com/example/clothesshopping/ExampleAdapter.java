@@ -19,8 +19,8 @@ import java.util.List;
 
 public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     private Context mContext;
-    private ArrayList<ExampleItem> mExampleList;
-    private ArrayList<ExampleItem> mExampleListAll;
+    private ArrayList<ClothingItem> mExampleList;
+    private ArrayList<ClothingItem> mExampleListAll;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -31,7 +31,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         mListener = listener;
     }
 
-    public ExampleAdapter(Context context, ArrayList<ExampleItem> exampleList) {
+    public ExampleAdapter(Context context, ArrayList<ClothingItem> exampleList) {
         mContext = context;
         mExampleList = exampleList;
         mExampleListAll = new ArrayList<>();
@@ -68,11 +68,11 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ExampleItem currentItem = mExampleList.get(position);
+        ClothingItem currentItem = mExampleList.get(position);
 
         String imageUrl = currentItem.getImageUrl();
         String creatorName = currentItem.getCreator();
-        int likeCount = currentItem.getLikeCount();
+        String likeCount = currentItem.getLikeCount();
 
         if (currentItem.getCreator().toLowerCase().contains("a")) {
             ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
@@ -104,12 +104,12 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
 
-            List<ExampleItem> filteredList = new ArrayList<>();
+            List<ClothingItem> filteredList = new ArrayList<>();
 
             if (charSequence == null || charSequence.length() == 0) {
                 filteredList.addAll(mExampleListAll);
             } else {
-                for (ExampleItem Example: mExampleListAll) {
+                for (ClothingItem Example: mExampleListAll) {
                     if (Example.getCreator().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                         filteredList.add(Example);
                     }
@@ -125,7 +125,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             mExampleList.clear();
-            mExampleList.addAll((Collection<? extends ExampleItem>) filterResults.values);
+            mExampleList.addAll((Collection<? extends ClothingItem>) filterResults.values);
             notifyDataSetChanged();
         }
     };

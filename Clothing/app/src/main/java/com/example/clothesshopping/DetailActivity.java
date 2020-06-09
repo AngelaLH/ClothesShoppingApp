@@ -16,7 +16,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(EXTRA_URL);
         String creatorName = intent.getStringExtra(EXTRA_CREATOR);
-        int likeCount = intent.getIntExtra(EXTRA_LIKES, 0);
+        String likeCount = intent.getStringExtra(EXTRA_LIKES);
         ImageView imageView = findViewById(R.id.image_view_detail);
         TextView textViewCreator = findViewById(R.id.text_view_creator_detail);
         TextView textViewLikes = findViewById(R.id.text_view_like_detail);
