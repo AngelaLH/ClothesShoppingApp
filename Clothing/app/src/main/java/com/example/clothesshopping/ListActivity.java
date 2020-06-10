@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static com.example.clothesshopping.DataProvider.getBottoms;
+import static com.example.clothesshopping.DataProvider.getDresses;
+import static com.example.clothesshopping.DataProvider.getTops;
 
 public class ListActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
     public static final String EXTRA_URL = "imageUrl";
@@ -32,7 +34,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ClothingItem> ClothingList;
-    private RequestQueue mRequestQueue;
+    //private RequestQueue mRequestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +46,17 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //mExampleList = new ArrayList<>();
-        mRequestQueue = Volley.newRequestQueue(this);
-        ClothingList = getBottoms();
+        //mRequestQueue = Volley.newRequestQueue(this);
+
+
+        if (message.equals("Bottom")) {
+            ClothingList = getBottoms();
+        } else if (message.equals("Dress")) {
+            ClothingList = getDresses();
+        } else {
+            ClothingList = getTops();
+        }
+
         mExampleAdapter = new ExampleAdapter(ListActivity.this, ClothingList);
         mRecyclerView.setAdapter(mExampleAdapter);
         mExampleAdapter.setOnItemClickListener(ListActivity.this);

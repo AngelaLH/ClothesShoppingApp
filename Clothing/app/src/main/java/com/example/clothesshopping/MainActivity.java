@@ -15,11 +15,29 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CardView catergoryCardView = (CardView) findViewById(R.id.card_view_category);
+        CardView catergoryCardView2 = (CardView) findViewById(R.id.card_view_category2);
+        CardView catergoryCardView3 = (CardView) findViewById(R.id.card_view_category3);
         catergoryCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent BottomIntent = new Intent(getBaseContext(), ListActivity.class);
+                BottomIntent.putExtra("MessageFromMainActivity", "Bottom");
+                startActivity(BottomIntent);
+            }
+        });
+        catergoryCardView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
-                numbersIntent.putExtra("MessageFromMainActivity", "This message came from Main Activity");
+                numbersIntent.putExtra("MessageFromMainActivity", "Dress");
+                startActivity(numbersIntent);
+            }
+        });
+        catergoryCardView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
+                numbersIntent.putExtra("MessageFromMainActivity", "Top");
                 startActivity(numbersIntent);
             }
         });
