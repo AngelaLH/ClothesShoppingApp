@@ -6,11 +6,21 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               tools:context="com.example.clothesshopping.DetailActivity">
-    <ImageView
-            android:id="@+id/image_view_detail"
+    <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:src="@mipmap/ic_launcher" />
+            app:fillColor="#FFFFFFFF"
+            app:pageColor="#00000000"
+            app:radius="6dp"
+            app:slideInterval="3000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp"
+            android:src="@mipmap/ic_launcher"/>
+   <!-- <ImageView
+            android:id="@+id/image_view_detail"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />-->
     <TextView
             android:id="@+id/text_view_creator_detail"
             android:layout_width="wrap_content"

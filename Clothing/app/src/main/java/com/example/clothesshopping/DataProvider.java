@@ -45,7 +45,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"bottom_" + String.valueOf(i), "bottom_" + String.valueOf(i+1), "bottom_" + String.valueOf(i+2)};
             String name = (String) BottomsName.get(index);
-            String price = (String) BottomsPrice.get(index);
+            String price = "$" +(String) BottomsPrice.get(index);
             ClothingItem c =new ClothingItem(images, name, price);
             BottomList.add(c);
             index++;
@@ -94,7 +94,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"top_" + String.valueOf(i), "top_" + String.valueOf(i+1), "top_" + String.valueOf(i+2)};
             String name = (String) TopNames.get(index);
-            String price = (String) TopPrices.get(index);
+            String price = "$" + (String) TopPrices.get(index);
             ClothingItem c =new ClothingItem(images, name, price);
             TopList.add(c);
             index++;
@@ -142,7 +142,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"dress_" + String.valueOf(i), "dress_" + String.valueOf(i+1), "dress_" + String.valueOf(i+2)};
             String name = (String) DressNames.get(index);
-            String price = (String) DressPrices.get(index);
+            String price = "$" + (String) DressPrices.get(index);
             ClothingItem c =new ClothingItem(images, name, price);
             DressList.add(c);
             index++;
