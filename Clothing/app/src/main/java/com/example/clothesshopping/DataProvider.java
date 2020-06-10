@@ -2,7 +2,6 @@ package com.example.clothesshopping;
 
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class DataProvider {
 
@@ -41,13 +40,15 @@ public class DataProvider {
         Object[] Bottoms = generateBottoms();
         BottomsName = (ArrayList) Bottoms[0];
         BottomsPrice = (ArrayList) Bottoms[1];
-        for (int i = 0; i < 10; i++)
+        int index = 0;
+        for (int i = 1; i < 30; i=i+3)
         {
-            String image = "bottom_"+String.valueOf((i+1)*3);
-            String name = (String) BottomsName.get(i);
-            String price = (String) BottomsPrice.get(i);
-            ClothingItem c =new ClothingItem(image, name, price);
+            String[] images = new String[]{"bottom_" + String.valueOf(i), "bottom_" + String.valueOf(i+1), "bottom_" + String.valueOf(i+2)};
+            String name = (String) BottomsName.get(index);
+            String price = (String) BottomsPrice.get(index);
+            ClothingItem c =new ClothingItem(images, name, price);
             BottomList.add(c);
+            index++;
         }
         return BottomList;
     }
@@ -88,13 +89,15 @@ public class DataProvider {
         TopNames = (ArrayList) Tops[0];
         TopPrices = (ArrayList) Tops[1];
 
-        for (int i = 0; i < 10; i++)
+        int index = 0;
+        for (int i = 1; i < 30; i=i+3)
         {
-            String image = "top_"+String.valueOf((i+1)*3);
-            String name = (String) TopNames.get(i);
-            String price = (String) TopPrices.get(i);
-            ClothingItem c =new ClothingItem(image, name, price);
+            String[] images = new String[]{"top_" + String.valueOf(i), "top_" + String.valueOf(i+1), "top_" + String.valueOf(i+2)};
+            String name = (String) TopNames.get(index);
+            String price = (String) TopPrices.get(index);
+            ClothingItem c =new ClothingItem(images, name, price);
             TopList.add(c);
+            index++;
         }
         return TopList;
     }
@@ -134,13 +137,15 @@ public class DataProvider {
         Object[] Dress = generateDresses();
         DressNames = (ArrayList) Dress[0];
         DressPrices = (ArrayList) Dress[1];
-        for (int i = 0; i < 10; i++)
+        int index = 0;
+        for (int i = 1; i < 30; i=i+3)
         {
-            String image = "dress_"+String.valueOf((i+1)*3);
-            String name = (String) DressNames.get(i);
-            String price = (String) DressPrices.get(i);
-            ClothingItem c =new ClothingItem(image, name, price);
+            String[] images = new String[]{"dress_" + String.valueOf(i), "dress_" + String.valueOf(i+1), "dress_" + String.valueOf(i+2)};
+            String name = (String) DressNames.get(index);
+            String price = (String) DressPrices.get(index);
+            ClothingItem c =new ClothingItem(images, name, price);
             DressList.add(c);
+            index++;
         }
         return DressList;
     }
