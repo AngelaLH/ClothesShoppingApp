@@ -22,13 +22,15 @@ public class DetailActivity extends AppCompatActivity {
         sampleImages = intent.getStringArrayExtra(EXTRA_URL);
         String clotheName = intent.getStringExtra(EXTRA_CREATOR);
         String price = intent.getStringExtra(EXTRA_LIKES);
+        String orders = String.valueOf(intent.getIntExtra(EXTRA_ORDERS,0));
 
         TextView textViewClotheName = findViewById(R.id.text_view_creator_detail);
         TextView textViewPrice = findViewById(R.id.text_view_like_detail);
+        TextView textViewOrders = findViewById(R.id.text_view_order_detail);
 
-        //Picasso.get().load(imageUrl).fit().centerInside().into(imageView);
         textViewClotheName.setText(clotheName);
         textViewPrice.setText("Price: " + price);
+        textViewOrders.setText("Orders: " + orders);
 
         carouselView = findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);

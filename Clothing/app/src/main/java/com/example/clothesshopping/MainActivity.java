@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity{
         CardView catergoryCardView = (CardView) findViewById(R.id.card_view_category);
         CardView catergoryCardView2 = (CardView) findViewById(R.id.card_view_category2);
         CardView catergoryCardView3 = (CardView) findViewById(R.id.card_view_category3);
+        CardView catergoryCardView4 = (CardView) findViewById(R.id.card_view_category4);
         catergoryCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +39,14 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
                 numbersIntent.putExtra("MessageFromMainActivity", "Top");
+                startActivity(numbersIntent);
+            }
+        });
+        catergoryCardView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
+                numbersIntent.putExtra("MessageFromMainActivity", "Search All");
                 startActivity(numbersIntent);
             }
         });
