@@ -44,7 +44,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 //        }
 //        return 1;
 
-        if ( mCLothingList.get(position).getClotheName().toLowerCase().contains("a")) {
+        if ( mCLothingList.get(position).getOrders() > 241) {
             return 0;
         }
         return 1;
@@ -57,7 +57,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         View view;
 
         if (viewType == 0) {
-            view = layoutInflater.inflate(R.layout.example_item, parent, false);
+            view = layoutInflater.inflate(R.layout.another_row_item, parent, false);
             return new ViewHolderOne(view);
         }
 
@@ -74,15 +74,16 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         String likeCount = currentItem.getPrice();
         String orderCount = String.valueOf(currentItem.getOrders());
 
-        if (currentItem.getClotheName().toLowerCase().contains("a")) {
-            ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
-            viewHolderOne.mTextViewCreator.setText(creatorName);
-            viewHolderOne.mTextViewLikes.setText("Price: " + likeCount);
-            viewHolderOne.mTextViewOrders.setText("Orders: " + orderCount);
+        if (currentItem.getOrders() > 241) {
+            ViewHolderOne ViewHolderOne = (ViewHolderOne) holder;
+            ViewHolderOne.mTextViewCreator.setText(creatorName);
+            ViewHolderOne.mTextViewLikes.setText("Price: " + likeCount);
+            ViewHolderOne.mTextViewOrders.setText("Orders: " + orderCount);
+
             int i = mContext.getResources().getIdentifier(
                     currentItem.getImagefilename(), "drawable",
                     mContext.getPackageName());
-            viewHolderOne.mImageView.setImageResource(i);
+            ViewHolderOne.mImageView.setImageResource(i);
             //Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderOne.mImageView);
         }else {
             ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
@@ -142,7 +143,6 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     };
 
     class ViewHolderOne extends RecyclerView.ViewHolder {
-
         public ImageView mImageView;
         public TextView mTextViewCreator;
         public TextView mTextViewLikes;

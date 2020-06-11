@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity{
         CardView catergoryCardView2 = (CardView) findViewById(R.id.card_view_category2);
         CardView catergoryCardView3 = (CardView) findViewById(R.id.card_view_category3);
         CardView catergoryCardView4 = (CardView) findViewById(R.id.card_view_category4);
+        CardView catergoryCardView5 = (CardView) findViewById(R.id.card_view_category5);
         catergoryCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +48,14 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
                 numbersIntent.putExtra("MessageFromMainActivity", "Search All");
+                startActivity(numbersIntent);
+            }
+        });
+        catergoryCardView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
+                numbersIntent.putExtra("MessageFromMainActivity", "Top Picks");
                 startActivity(numbersIntent);
             }
         });
