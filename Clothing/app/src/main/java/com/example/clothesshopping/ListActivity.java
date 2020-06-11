@@ -45,6 +45,8 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
             ClothingList = getDresses();
         } else if (message.equals("Top")){
             ClothingList = getTops();
+        } else if (message.equals("Top Picks")){
+            ClothingList = getTopPicks();
         } else {
             ClothingList = getAll();
         }

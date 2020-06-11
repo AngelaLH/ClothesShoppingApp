@@ -1,7 +1,11 @@
 package com.example.clothesshopping;
 
 
+import android.os.Build;
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class DataProvider {
 
@@ -197,6 +201,17 @@ public class DataProvider {
         fullList.addAll(getDresses());
         fullList.addAll(getBottoms());
         return fullList;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static ArrayList<ClothingItem> getTopPicks() {
+        ArrayList fullList = new ArrayList<ClothingItem>();
+        ArrayList topPicks = new ArrayList<ClothingItem>();
+        fullList = getAll();
+        fullList.sort(Comparator.comparing(ClothingItem::getOrders));
+        topPicks.add(fullList.get(0));
+        topPicks.add(fullList.get(1));
+        topPicks.add(fullList.get(2));
+        return topPicks;
     }
 
 
