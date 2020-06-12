@@ -21,6 +21,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     public static final String EXTRA_CREATOR = "creatorName";
     public static final String EXTRA_LIKES = "likeCount";
     public static final String EXTRA_ORDERS = "orderCount";
+    public static final String EXTRA_DESC = "desc";
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ClothingItem> ClothingList;
@@ -97,6 +98,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getClotheName());
         detailIntent.putExtra(EXTRA_LIKES, clickedItem.getPrice());
         detailIntent.putExtra(EXTRA_ORDERS, clickedItem.getOrders());
+        detailIntent.putExtra(EXTRA_DESC, clickedItem.getDesc());
         startActivity(detailIntent);
     }
 

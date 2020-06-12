@@ -21,16 +21,19 @@ public class DetailActivity extends AppCompatActivity {
 
         sampleImages = intent.getStringArrayExtra(EXTRA_URL);
         String clotheName = intent.getStringExtra(EXTRA_CREATOR);
+        String desc = intent.getStringExtra(EXTRA_DESC);
         String price = intent.getStringExtra(EXTRA_LIKES);
         String orders = String.valueOf(intent.getIntExtra(EXTRA_ORDERS,0));
 
         TextView textViewClotheName = findViewById(R.id.text_view_creator_detail);
         TextView textViewPrice = findViewById(R.id.text_view_like_detail);
         TextView textViewOrders = findViewById(R.id.text_view_order_detail);
+        TextView textViewDesc = findViewById(R.id.text_view_desc_detail);
 
         textViewClotheName.setText(clotheName);
         textViewPrice.setText("Price: " + price);
         textViewOrders.setText("Orders: " + orders);
+        textViewDesc.setText(desc);
 
         carouselView = findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
