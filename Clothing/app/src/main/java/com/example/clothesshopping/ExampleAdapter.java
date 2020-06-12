@@ -69,7 +69,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ClothingItem currentItem = mCLothingList.get(position);
 
-        String imageUrl = currentItem.getImagefilename();
+        //String imageUrl = currentItem.getImagefilename();
         String creatorName = currentItem.getClotheName();
         String likeCount = currentItem.getPrice();
         String orderCount = String.valueOf(currentItem.getOrders());
