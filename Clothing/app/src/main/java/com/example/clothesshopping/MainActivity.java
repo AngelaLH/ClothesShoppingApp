@@ -78,6 +78,16 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
                 startActivity(numbersIntent);
             }
         });
+
+        mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false){
+            @Override
+            public boolean checkLayoutParams(RecyclerView.LayoutParams lp) {
+                // force height of viewHolder here, this will override layout_height from xml
+                lp.width = getWidth() / 3;
+                lp.height = getWidth() / 3;
+                return true;
+            }
+        });
 //        catergoryCardView5.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -100,4 +110,6 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         detailIntent.putExtra(EXTRA_ORDERS, clickedItem.getOrders());
         startActivity(detailIntent);
     }
+
+
 }

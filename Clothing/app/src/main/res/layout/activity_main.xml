@@ -15,15 +15,15 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="TOP PICKS"
-    android:gravity="center"
-    ></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TOP PICKS"
+        android:gravity="center"
+        ></TextView>
 
     <LinearLayout
-        android:layout_width="360dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
@@ -32,7 +32,6 @@
             android:id="@+id/horizontal_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
             android:orientation="horizontal"
         />
         </LinearLayout>

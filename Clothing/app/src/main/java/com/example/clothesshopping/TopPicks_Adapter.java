@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +35,11 @@ public class TopPicks_Adapter extends RecyclerView.Adapter  {
         View view;
 
         view = layoutInflater.inflate(R.layout.toppicks_list, parent, false);
+
         return new ViewHolder(view);
+
+
+
     }
 
     @Override
@@ -46,7 +48,7 @@ public class TopPicks_Adapter extends RecyclerView.Adapter  {
         String clotheName = currentItem.getClotheName();
 
         ViewHolder viewHolder= (ViewHolder) holder;
-        viewHolder.mName.setText(clotheName);
+      //  viewHolder.mName.setText(clotheName);
 
         int i = mContext.getResources().getIdentifier(
                 currentItem.getImagefilename(), "drawable",
@@ -62,13 +64,14 @@ public class TopPicks_Adapter extends RecyclerView.Adapter  {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
-        public TextView mName;
+       // public TextView mName;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.top_picks_image_view);
-            mName = itemView.findViewById(R.id.top_picks_text_view_name);
+          //  mName = itemView.findViewById(R.id.top_picks_text_view_name);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,4 +86,11 @@ public class TopPicks_Adapter extends RecyclerView.Adapter  {
             });
         }
     }
+
+
+
+
+
 }
+
+
