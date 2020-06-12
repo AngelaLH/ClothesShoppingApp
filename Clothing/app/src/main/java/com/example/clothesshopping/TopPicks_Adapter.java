@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class TopPicks_Adapter extends RecyclerView.Adapter {
+public class TopPicks_Adapter extends RecyclerView.Adapter  {
     private Context mContext;
     private ArrayList<ClothingItem> mTopPicks;
     private OnItemClickListener mListener;
@@ -21,7 +21,7 @@ public class TopPicks_Adapter extends RecyclerView.Adapter {
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener2(OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
@@ -57,7 +57,7 @@ public class TopPicks_Adapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mTopPicks.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
