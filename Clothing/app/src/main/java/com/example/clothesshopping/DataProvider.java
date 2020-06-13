@@ -237,7 +237,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"dress_" + String.valueOf(i+2), "dress_" + String.valueOf(i+1), "dress_" + String.valueOf(i)};
             String name = "\uD83D\uDC57" + (String) DressNames.get(index);
-            String price = "\uD83D\uDCB8" + "$" + (String) DressPrices.get(index);
+            String price = "$" + (String) DressPrices.get(index);
             Integer orders = (Integer) DressOrders.get(index);
             String desc = (String) DressDesc.get(index);
             ClothingItem c =new ClothingItem(images, name, price, orders, desc);
