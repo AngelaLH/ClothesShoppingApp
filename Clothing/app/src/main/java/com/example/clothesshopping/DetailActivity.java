@@ -31,8 +31,8 @@ public class DetailActivity extends AppCompatActivity {
         TextView textViewDesc = findViewById(R.id.text_view_desc_detail);
 
         textViewClotheName.setText(clotheName);
-        textViewPrice.setText("Price: " + price);
-        textViewOrders.setText("Orders: " + orders);
+        textViewPrice.setText("\uD83D\uDCB8" + price);
+        textViewOrders.setText("\uD83D\uDE9A"+ orders + " Orders");
         textViewDesc.setText(desc);
 
         carouselView = findViewById(R.id.carouselView);
