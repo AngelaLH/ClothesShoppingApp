@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
             @Override
             public void onClick(View view) {
                 Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
-                numbersIntent.putExtra("MessageFromMainActivity", "Search All");
+                numbersIntent.putExtra("MessageFromMainActivity", "Search");
                 startActivity(numbersIntent);
             }
         });

@@ -22,6 +22,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     private ArrayList<ClothingItem> mExampleListAll;
     private OnItemClickListener mListener;
 
+
     public interface OnItemClickListener {
         void onItemClick(int position);
     }

@@ -38,8 +38,6 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //mExampleList = new ArrayList<>();
         //mRequestQueue = Volley.newRequestQueue(this);
-
-
         if (message.equals("Bottom")) {
             ClothingList = getBottoms();
         } else if (message.equals("Dress")) {

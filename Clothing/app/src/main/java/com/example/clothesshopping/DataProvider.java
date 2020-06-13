@@ -5,6 +5,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class DataProvider {
@@ -59,6 +60,7 @@ public class DataProvider {
         return new Object[]{BottomNames, BottomPrices, BottomOrders, BottomDesc};
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static ArrayList<ClothingItem> getBottoms() {
         ArrayList BottomList = new ArrayList<ClothingItem>();
         ArrayList BottomsName;
@@ -74,7 +76,7 @@ public class DataProvider {
         for (int i = 1; i < 30; i=i+3)
         {
             String[] images = new String[]{"bottom_" + String.valueOf(i+2), "bottom_" + String.valueOf(i+1), "bottom_" + String.valueOf(i)};
-            String name = (String) BottomsName.get(index);
+            String name = "\uD83D\uDC56" + (String) BottomsName.get(index);
             String price = "$" +(String) BottomsPrice.get(index);
             Integer orders = (Integer) BottomsOrders.get(index);
             String desc = (String) BottomsDesc.get(index);
@@ -82,6 +84,9 @@ public class DataProvider {
             BottomList.add(c);
             index++;
         }
+
+        BottomList.sort(Comparator.comparing(ClothingItem::getOrders));
+        Collections.reverse(BottomList);
         return BottomList;
     }
 
@@ -135,6 +140,7 @@ public class DataProvider {
         return new Object[]{TopNames, TopPrices, TopOrders, TopDesc};
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static ArrayList<ClothingItem> getTops() {
         ArrayList TopList = new ArrayList<ClothingItem>();
         ArrayList TopNames;
@@ -151,7 +157,7 @@ public class DataProvider {
         for (int i = 1; i < 30; i=i+3)
         {
             String[] images = new String[]{"top_" + String.valueOf(i+2), "top_" + String.valueOf(i+1), "top_" + String.valueOf(i)};
-            String name = (String) TopNames.get(index);
+            String name = 	"\uD83D\uDC5A" + (String) TopNames.get(index);
             String price = "$" + (String) TopPrices.get(index);
             Integer orders = (Integer) TopOrders.get(index);
             String desc = (String) TopDesc.get(index);
@@ -159,6 +165,8 @@ public class DataProvider {
             TopList.add(c);
             index++;
         }
+        TopList.sort(Comparator.comparing(ClothingItem::getOrders));
+        Collections.reverse(TopList);
         return TopList;
     }
 
@@ -212,6 +220,7 @@ public class DataProvider {
         return new Object[]{DressNames, DressPrices, DressOrders, DressDesc};
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static ArrayList<ClothingItem> getDresses() {
         ArrayList DressList = new ArrayList<ClothingItem>();
         ArrayList DressNames;
@@ -227,7 +236,7 @@ public class DataProvider {
         for (int i = 1; i < 30; i=i+3)
         {
             String[] images = new String[]{"dress_" + String.valueOf(i+2), "dress_" + String.valueOf(i+1), "dress_" + String.valueOf(i)};
-            String name = (String) DressNames.get(index);
+            String name = "\uD83D\uDC57" + (String) DressNames.get(index);
             String price = "$" + (String) DressPrices.get(index);
             Integer orders = (Integer) DressOrders.get(index);
             String desc = (String) DressDesc.get(index);
@@ -235,13 +244,19 @@ public class DataProvider {
             DressList.add(c);
             index++;
         }
+
+        DressList.sort(Comparator.comparing(ClothingItem::getOrders));
+        Collections.reverse(DressList);
         return DressList;
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static ArrayList<ClothingItem> getAll() {
         ArrayList fullList = new ArrayList<ClothingItem>();
         fullList.addAll(getTops());
         fullList.addAll(getDresses());
         fullList.addAll(getBottoms());
+        fullList.sort(Comparator.comparing(ClothingItem::getOrders));
+        Collections.reverse(fullList);
         return fullList;
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
