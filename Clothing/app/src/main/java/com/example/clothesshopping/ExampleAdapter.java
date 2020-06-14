@@ -40,11 +40,6 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     @Override
     public int getItemViewType(int position) {
-//        if (position % 2 == 0) {
-//            return 0;
-//        }
-//        return 1;
-
         if ( mCLothingList.get(position).getOrders() > 241) {
             return 0;
         }
@@ -58,45 +53,41 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         View view;
 
         if (viewType == 0) {
-            view = layoutInflater.inflate(R.layout.another_row_item, parent, false);
+            view = layoutInflater.inflate(R.layout.row_item, parent, false);
             return new ViewHolderOne(view);
         }
 
-        view = layoutInflater.inflate(R.layout.another_row_item, parent, false);
+        view = layoutInflater.inflate(R.layout.row_item, parent, false);
         return new ViewHolderTwo(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ClothingItem currentItem = mCLothingList.get(position);
-
-        //String imageUrl = currentItem.getImagefilename();
-        String creatorName = currentItem.getClotheName();
+        String creatorName = currentItem.getClothesName();
         String likeCount = currentItem.getPrice();
         String orderCount = String.valueOf(currentItem.getOrders());
 
         if (currentItem.getOrders() > 241) {
             ViewHolderOne ViewHolderOne = (ViewHolderOne) holder;
-            ViewHolderOne.mTextViewCreator.setText(creatorName);
-            ViewHolderOne.mTextViewLikes.setText(likeCount);
+            ViewHolderOne.mTextViewName.setText(creatorName);
+            ViewHolderOne.mTextViewPrice.setText(likeCount);
             ViewHolderOne.mTextViewOrders.setText("\uD83D\uDE9A"+ orderCount + " Orders");
 
             int i = mContext.getResources().getIdentifier(
                     currentItem.getImagefilename(), "drawable",
                     mContext.getPackageName());
             ViewHolderOne.mImageView.setImageResource(i);
-            //Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderOne.mImageView);
         }else {
             ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
-            viewHolderTwo.mTextViewCreator.setText(creatorName);
-            viewHolderTwo.mTextViewLikes.setText(likeCount);
+            viewHolderTwo.mTextViewName.setText(creatorName);
+            viewHolderTwo.mTextViewPrice.setText(likeCount);
             viewHolderTwo.mTextViewOrders.setText("\uD83D\uDE9A"+ orderCount + " Orders");
 
             int i = mContext.getResources().getIdentifier(
                     currentItem.getImagefilename(), "drawable",
                     mContext.getPackageName());
             viewHolderTwo.mImageView.setImageResource(i);
-            //Picasso.get().load(imageUrl).fit().centerInside().into(viewHolderTwo.mImageView);
         }
     }
 
@@ -113,7 +104,6 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     Filter myFilter = new Filter() {
 
-        //Automatic on background thread
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
 
@@ -123,7 +113,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
                 filteredList.addAll(mExampleListAll);
             } else {
                 for (ClothingItem Example: mExampleListAll) {
-                    if (Example.getClotheName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                    if (Example.getClothesName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                         filteredList.add(Example);
                     }
                 }
@@ -145,15 +135,15 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     class ViewHolderOne extends RecyclerView.ViewHolder {
         public ImageView mImageView;
-        public TextView mTextViewCreator;
-        public TextView mTextViewLikes;
+        public TextView mTextViewName;
+        public TextView mTextViewPrice;
         public TextView mTextViewOrders;
 
         public ViewHolderOne(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_view);
-            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
-            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
+            mTextViewName = itemView.findViewById(R.id.text_view_name);
+            mTextViewPrice = itemView.findViewById(R.id.text_view_price);
             mTextViewOrders = itemView.findViewById(R.id.text_view_orders);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -173,15 +163,15 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
     class ViewHolderTwo extends RecyclerView.ViewHolder {
 
         public ImageView mImageView;
-        public TextView mTextViewCreator;
-        public TextView mTextViewLikes;
+        public TextView mTextViewName;
+        public TextView mTextViewPrice;
         public TextView mTextViewOrders;
 
         public ViewHolderTwo(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_view);
-            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
-            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
+            mTextViewName = itemView.findViewById(R.id.text_view_name);
+            mTextViewPrice = itemView.findViewById(R.id.text_view_price);
             mTextViewOrders = itemView.findViewById(R.id.text_view_orders);
 
             itemView.setOnClickListener(new View.OnClickListener() {

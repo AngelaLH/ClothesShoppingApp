@@ -20,33 +20,31 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
     private TopPicks_Adapter mTopPicksAdapter;
     private ArrayList<ClothingItem> TopPicks;
     public static final String EXTRA_URL = "imageUrl";
-    public static final String EXTRA_CREATOR = "creatorName";
-    public static final String EXTRA_LIKES = "likeCount";
+    public static final String EXTRA_NAME = "creatorName";
+    public static final String EXTRA_PRICE = "Price";
     public static final String EXTRA_ORDERS = "orderCount";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_foreground);
 
         TopPicks = getTopPicks();
         mHorizontalRecyclerView = findViewById(R.id.horizontal_recycler_view);
-        //mHorizontalRecyclerView.setHasFixedSize(true);
         mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mTopPicksAdapter = new TopPicks_Adapter(MainActivity.this, TopPicks);
         mHorizontalRecyclerView.setAdapter(mTopPicksAdapter);
 
-        mTopPicksAdapter.setOnItemClickListener((TopPicks_Adapter.OnItemClickListener) MainActivity.this);
+        mTopPicksAdapter.setOnItemClickListener(MainActivity.this);
 
 
-        CardView catergoryCardView = (CardView) findViewById(R.id.card_view_category);
-        CardView catergoryCardView2 = (CardView) findViewById(R.id.card_view_category2);
-        CardView catergoryCardView3 = (CardView) findViewById(R.id.card_view_category3);
-        CardView catergoryCardView4 = (CardView) findViewById(R.id.card_view_category4);
-        //CardView catergoryCardView5 = (CardView) findViewById(R.id.card_view_category5);
+        CardView catergoryCardView = findViewById(R.id.card_view_category);
+        CardView catergoryCardView2 = findViewById(R.id.card_view_category2);
+        CardView catergoryCardView3 = findViewById(R.id.card_view_category3);
+        CardView catergoryCardView4 = findViewById(R.id.card_view_category4);
         catergoryCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
             }
         });
 
-        mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false){
+        mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
             @Override
             public boolean checkLayoutParams(RecyclerView.LayoutParams lp) {
                 // force height of viewHolder here, this will override layout_height from xml
@@ -89,15 +87,6 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
                 return true;
             }
         });
-//        catergoryCardView5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent numbersIntent = new Intent(getBaseContext(), ListActivity.class);
-//                numbersIntent.putExtra("MessageFromMainActivity", "Top Picks");
-//                startActivity(numbersIntent);
-//            }
-//        });
-
     }
 
 
@@ -106,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         Intent detailIntent = new Intent(this, DetailActivity.class);
         ClothingItem clickedItem = TopPicks.get(position);
         detailIntent.putExtra(EXTRA_URL, clickedItem.getImagefilenames());
-        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getClotheName());
-        detailIntent.putExtra(EXTRA_LIKES, clickedItem.getPrice());
+        detailIntent.putExtra(EXTRA_NAME, clickedItem.getClothesName());
+        detailIntent.putExtra(EXTRA_PRICE, clickedItem.getPrice());
         detailIntent.putExtra(EXTRA_ORDERS, clickedItem.getOrders());
         startActivity(detailIntent);
     }

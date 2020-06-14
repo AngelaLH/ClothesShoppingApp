@@ -20,7 +20,7 @@ public class ClothingItem {
     public String[] getImagefilenames() {
         return mImagefilenames;
     }
-    public String getClotheName() { return mClotheName; }
+    public String getClothesName() { return mClotheName; }
     public String getPrice() {
         return mPrice;
     }

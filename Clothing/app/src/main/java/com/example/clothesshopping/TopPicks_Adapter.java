@@ -45,10 +45,8 @@ public class TopPicks_Adapter extends RecyclerView.Adapter  {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ClothingItem currentItem = mTopPicks.get(position);
-        String clotheName = currentItem.getClotheName();
 
         ViewHolder viewHolder= (ViewHolder) holder;
-      //  viewHolder.mName.setText(clotheName);
 
         int i = mContext.getResources().getIdentifier(
                 currentItem.getImagefilename(), "drawable",
@@ -64,13 +62,11 @@ public class TopPicks_Adapter extends RecyclerView.Adapter  {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
-       // public TextView mName;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.top_picks_image_view);
-          //  mName = itemView.findViewById(R.id.top_picks_text_view_name);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

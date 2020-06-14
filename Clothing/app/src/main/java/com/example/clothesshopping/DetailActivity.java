@@ -20,9 +20,9 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         sampleImages = intent.getStringArrayExtra(EXTRA_URL);
-        String clotheName = intent.getStringExtra(EXTRA_CREATOR);
+        String clotheName = intent.getStringExtra(EXTRA_NAME);
         String desc = intent.getStringExtra(EXTRA_DESC);
-        String price = intent.getStringExtra(EXTRA_LIKES);
+        String price = intent.getStringExtra(EXTRA_PRICE);
         String orders = String.valueOf(intent.getIntExtra(EXTRA_ORDERS,0));
 
         TextView textViewClotheName = findViewById(R.id.text_view_creator_detail);
