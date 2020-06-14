@@ -264,11 +264,10 @@ public class DataProvider {
         ArrayList fullList = new ArrayList<ClothingItem>();
         ArrayList topPicks = new ArrayList<ClothingItem>();
         fullList = getAll();
-        fullList.sort(Comparator.comparing(ClothingItem::getOrders));
-        int size = fullList.size();
-        topPicks.add(fullList.get(size-1));
-        topPicks.add(fullList.get(size-2));
-        topPicks.add(fullList.get(size-3));
+        Collections.sort(fullList, ClothingItem.OrderComparator);
+        topPicks.add(fullList.get(0));
+        topPicks.add(fullList.get(1));
+        topPicks.add(fullList.get(2));
         return topPicks;
     }
 

@@ -16,13 +16,14 @@ import static com.example.clothesshopping.DataProvider.getTopPicks;
 
 
 public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.OnItemClickListener {
+    public static final String EXTRA_URL = "imageUrl";
+    public static final String EXTRA_NAME = "Name";
+    public static final String EXTRA_PRICE = "price";
+    public static final String EXTRA_ORDERS = "orderCount";
+    public static final String EXTRA_DESC = "desc";
     private RecyclerView mHorizontalRecyclerView;
     private TopPicks_Adapter mTopPicksAdapter;
     private ArrayList<ClothingItem> TopPicks;
-    public static final String EXTRA_URL = "imageUrl";
-    public static final String EXTRA_NAME = "creatorName";
-    public static final String EXTRA_PRICE = "Price";
-    public static final String EXTRA_ORDERS = "orderCount";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,12 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         setSupportActionBar(myToolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_foreground);
 
-        TopPicks = getTopPicks();
+
         mHorizontalRecyclerView = findViewById(R.id.horizontal_recycler_view);
         mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        TopPicks = getTopPicks();
+
         mTopPicksAdapter = new TopPicks_Adapter(MainActivity.this, TopPicks);
         mHorizontalRecyclerView.setAdapter(mTopPicksAdapter);
 
@@ -89,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         });
     }
 
-
     @Override
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(this, DetailActivity.class);
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         detailIntent.putExtra(EXTRA_NAME, clickedItem.getClothesName());
         detailIntent.putExtra(EXTRA_PRICE, clickedItem.getPrice());
         detailIntent.putExtra(EXTRA_ORDERS, clickedItem.getOrders());
+        detailIntent.putExtra(EXTRA_DESC, clickedItem.getDesc());
         startActivity(detailIntent);
     }
 

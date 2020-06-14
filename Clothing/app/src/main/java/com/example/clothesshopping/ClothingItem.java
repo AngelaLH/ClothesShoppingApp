@@ -1,6 +1,8 @@
 package com.example.clothesshopping;
 
-public class ClothingItem {
+import java.util.Comparator;
+
+public class ClothingItem{
 
     private String[] mImagefilenames; //each clothing item has 3 images
     private String mClotheName;
@@ -30,4 +32,14 @@ public class ClothingItem {
     public String getDesc() {
         return mDesc;
     }
+
+    public static Comparator<ClothingItem> OrderComparator = new Comparator<ClothingItem>() {
+
+        public int compare(ClothingItem c1, ClothingItem c2) {
+            Integer Clothing1 = c1.getOrders();
+            Integer Clothing2 = c2.getOrders();
+
+            return Clothing2.compareTo(Clothing1);
+
+        }};
 }

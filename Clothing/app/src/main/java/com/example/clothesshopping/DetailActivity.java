@@ -25,8 +25,8 @@ public class DetailActivity extends AppCompatActivity {
         String price = intent.getStringExtra(EXTRA_PRICE);
         String orders = String.valueOf(intent.getIntExtra(EXTRA_ORDERS,0));
 
-        TextView textViewClotheName = findViewById(R.id.text_view_creator_detail);
-        TextView textViewPrice = findViewById(R.id.text_view_like_detail);
+        TextView textViewClotheName = findViewById(R.id.text_view_name_detail);
+        TextView textViewPrice = findViewById(R.id.text_view_price_detail);
         TextView textViewOrders = findViewById(R.id.text_view_order_detail);
         TextView textViewDesc = findViewById(R.id.text_view_desc_detail);
 
