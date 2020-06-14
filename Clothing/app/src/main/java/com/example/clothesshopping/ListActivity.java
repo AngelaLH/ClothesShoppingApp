@@ -2,20 +2,15 @@ package com.example.clothesshopping;
 
 
 import android.content.Intent;
-import android.graphics.drawable.AnimatedImageDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.SearchView;
 import android.widget.Toast;
-import androidx.annotation.AnimRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.mlsdev.animatedrv.AnimatedRecyclerView;
 
 import java.util.ArrayList;
 
@@ -30,7 +25,6 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ClothingItem> ClothingList;
-
     //private RequestQueue mRequestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +33,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         Intent intent = getIntent();
         String message = intent.getStringExtra("MessageFromMainActivity");
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-
-
-        mRecyclerView = (AnimatedRecyclerView) findViewById(R.id.recycler_view);
-        @AnimRes int layoutAnimation = R.anim.layout_animation_from_bottom;
-        LayoutAnimationController animController = AnimationUtils.loadLayoutAnimation(this,layoutAnimation);
-        mRecyclerView.setLayoutAnimation(animController);
+        mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //mExampleList = new ArrayList<>();
@@ -61,12 +50,8 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
             ClothingList = getAll();
         }
 
-
-
         mExampleAdapter = new ExampleAdapter(ListActivity.this, ClothingList);
         mRecyclerView.setAdapter(mExampleAdapter);
-        mExampleAdapter.notifyDataSetChanged();
-        mRecyclerView.scheduleLayoutAnimation();
         mExampleAdapter.setOnItemClickListener(ListActivity.this);
 
         //parseJSON();
