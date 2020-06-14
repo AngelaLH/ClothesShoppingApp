@@ -96,5 +96,4 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         return super.onCreateOptionsMenu(menu);
     }
 
-
 }
