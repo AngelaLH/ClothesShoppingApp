@@ -10,7 +10,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -18,10 +17,10 @@ import java.util.Collection;
 import java.util.List;
 
 
-public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
+public class ClothingAdapter extends RecyclerView.Adapter implements Filterable {
     private Context mContext;
-    private ArrayList<ClothingItem> mCLothingList;
-    private ArrayList<ClothingItem> mExampleListAll;
+    private ArrayList<ClothingItem> mClothingList;
+    private ArrayList<ClothingItem> mClothingListListAll;
     private OnItemClickListener mListener;
 
 
@@ -33,11 +32,11 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         mListener = listener;
     }
 
-    public ExampleAdapter(Context context, ArrayList<ClothingItem> exampleList) {
+    public ClothingAdapter(Context context, ArrayList<ClothingItem> exampleList) {
         mContext = context;
-        mCLothingList = exampleList;
-        mExampleListAll = new ArrayList<>();
-        mExampleListAll.addAll(exampleList);
+        mClothingList = exampleList;
+        mClothingListListAll = new ArrayList<>();
+        mClothingListListAll.addAll(exampleList);
     }
 
 
@@ -54,7 +53,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ClothingItem currentItem = mCLothingList.get(position);
+        ClothingItem currentItem = mClothingList.get(position);
         String creatorName = currentItem.getClothesName();
         String likeCount = currentItem.getPrice();
         String orderCount = String.valueOf(currentItem.getOrders());
@@ -73,7 +72,7 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
 
     @Override
     public int getItemCount() {
-        return mCLothingList.size();
+        return mClothingList.size();
     }
 
     @Override
@@ -90,9 +89,9 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
             List<ClothingItem> filteredList = new ArrayList<>();
 
             if (charSequence == null || charSequence.length() == 0) {
-                filteredList.addAll(mExampleListAll);
+                filteredList.addAll(mClothingListListAll);
             } else {
-                for (ClothingItem Example: mExampleListAll) {
+                for (ClothingItem Example: mClothingListListAll) {
                     if (Example.getClothesName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                         filteredList.add(Example);
                     }
@@ -104,11 +103,10 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
             return filterResults;
         }
 
-        //Automatic on UI thread
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            mCLothingList.clear();
-            mCLothingList.addAll((Collection<? extends ClothingItem>) filterResults.values);
+            mClothingList.clear();
+            mClothingList.addAll((Collection<? extends ClothingItem>) filterResults.values);
             notifyDataSetChanged();
         }
     };

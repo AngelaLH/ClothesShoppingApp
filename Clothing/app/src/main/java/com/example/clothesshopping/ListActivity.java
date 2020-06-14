@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationUtils;
 import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,14 +17,14 @@ import java.util.ArrayList;
 
 import static com.example.clothesshopping.DataProvider.*;
 
-public class ListActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
+public class ListActivity extends AppCompatActivity implements ClothingAdapter.OnItemClickListener {
     public static final String EXTRA_URL = "imageUrl";
     public static final String EXTRA_NAME = "Name";
     public static final String EXTRA_PRICE = "price";
     public static final String EXTRA_ORDERS = "orderCount";
     public static final String EXTRA_DESC = "desc";
     private RecyclerView mRecyclerView;
-    private ExampleAdapter mExampleAdapter;
+    private ClothingAdapter mClothingAdapter;
     private ArrayList<ClothingItem> ClothingList;
 
     @Override
@@ -50,9 +48,9 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
             ClothingList = getAll();
         }
 
-        mExampleAdapter = new ExampleAdapter(ListActivity.this, ClothingList);
-        mRecyclerView.setAdapter(mExampleAdapter);
-        mExampleAdapter.setOnItemClickListener(ListActivity.this);
+        mClothingAdapter = new ClothingAdapter(ListActivity.this, ClothingList);
+        mRecyclerView.setAdapter(mClothingAdapter);
+        mClothingAdapter.setOnItemClickListener(ListActivity.this);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -87,7 +85,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mExampleAdapter.getFilter().filter(newText);
+                mClothingAdapter.getFilter().filter(newText);
                 return false;
             }
         });
