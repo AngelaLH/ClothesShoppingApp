@@ -2,6 +2,8 @@ package com.example.clothesshopping;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView textViewPrice = findViewById(R.id.text_view_price_detail);
         TextView textViewOrders = findViewById(R.id.text_view_order_detail);
         TextView textViewDesc = findViewById(R.id.text_view_desc_detail);
+        ViewGroup linear = findViewById(R.id.linearLayout);
 
         textViewClotheName.setText(clotheName);
         textViewPrice.setText(price);
@@ -38,6 +41,9 @@ public class DetailActivity extends AppCompatActivity {
         carouselView = findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
+
+        linear.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_right));
+
     }
 
     ImageListener imageListener = new ImageListener() {

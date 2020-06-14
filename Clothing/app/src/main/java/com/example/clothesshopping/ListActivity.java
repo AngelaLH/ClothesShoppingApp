@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationUtils;
 import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,6 +28,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ClothingItem> ClothingList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ViewGroup linear = findViewById(R.id.scene_container);
+        linear.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_right));
         if (message.equals("Bottom")) {
             ClothingList = getBottoms();
         } else if (message.equals("Dress")) {
@@ -60,6 +67,8 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         detailIntent.putExtra(EXTRA_PRICE, clickedItem.getPrice());
         detailIntent.putExtra(EXTRA_ORDERS, clickedItem.getOrders());
         detailIntent.putExtra(EXTRA_DESC, clickedItem.getDesc());
+        ViewGroup linear = findViewById(R.id.scene_container);
+        linear.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out_left));
         startActivity(detailIntent);
     }
 
@@ -86,5 +95,6 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
 }

@@ -1,12 +1,19 @@
 package com.example.clothesshopping;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Scene;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_foreground);
+        ViewGroup linear = findViewById(R.id.scene_root);
 
 
         mHorizontalRecyclerView = findViewById(R.id.horizontal_recycler_view);
@@ -43,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         mHorizontalRecyclerView.setAdapter(mTopPicksAdapter);
 
         mTopPicksAdapter.setOnItemClickListener(MainActivity.this);
-
 
         CardView catergoryCardView = findViewById(R.id.card_view_category);
         CardView catergoryCardView2 = findViewById(R.id.card_view_category2);

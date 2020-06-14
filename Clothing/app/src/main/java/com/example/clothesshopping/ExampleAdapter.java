@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -65,6 +67,8 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
                     currentItem.getImagefilename(), "drawable",
                     mContext.getPackageName());
             ViewHolder.mImageView.setImageResource(i);
+
+        setFadeAnimation(holder.itemView);
     }
 
     @Override
@@ -134,6 +138,12 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
                 }
             });
         }
+    }
+
+    public void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(500);
+        view.startAnimation(anim);
     }
 
 }

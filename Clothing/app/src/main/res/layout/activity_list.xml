@@ -4,7 +4,13 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent" android:layout_height="match_parent"
                 tools:context="com.example.clothesshopping.ListActivity"
-                android:background="@android:color/darker_gray">
+                android:background="@android:color/darker_gray"
+                android:id="@+id/scene_container"
+                android:fromAlpha="1.0"
+                android:toAlpha="0.0"
+                android:duration="1000"
+                android:repeatCount="infinite"
+                android:repeatMode="reverse">
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"

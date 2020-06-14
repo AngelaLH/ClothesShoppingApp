@@ -2,11 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/linearLayout"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
               tools:context="com.example.clothesshopping.DetailActivity"
-              android:scrollbars="vertical" android:layout_gravity="center">
+              android:scrollbars="vertical" android:layout_gravity="center"
+              android:fromAlpha="1.0"
+              android:toAlpha="0.0"
+              android:duration="1000"
+              android:repeatCount="infinite"
+              android:repeatMode="reverse">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
