@@ -12,11 +12,22 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <com.mlsdev.animatedrv.AnimatedRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:animationDuration="600"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@id/my_toolbar"
+            app:layoutAnimation="@anim/layout_animation_from_bottom"
+            app:layoutManagerOrientation="vertical"
+            app:layoutManagerReverse="false"
+            app:layoutManagerType="linear" />
+   <!-- <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
-            android:layout_below="@id/my_toolbar"/>
+            android:layout_below="@id/my_toolbar"
+            android:layoutAnimation="@anim/layout_animation_from_bottom"/>-->
 </RelativeLayout>
