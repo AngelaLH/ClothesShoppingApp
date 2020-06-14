@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +30,6 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
         setContentView(R.layout.activity_list);
         Intent intent = getIntent();
         String message = intent.getStringExtra("MessageFromMainActivity");
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -51,6 +49,7 @@ public class ListActivity extends AppCompatActivity implements ExampleAdapter.On
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_foreground);
     }
     @Override
     public void onItemClick(int position) {
