@@ -78,8 +78,8 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         if (currentItem.getOrders() > 241) {
             ViewHolderOne ViewHolderOne = (ViewHolderOne) holder;
             ViewHolderOne.mTextViewCreator.setText(creatorName);
-            ViewHolderOne.mTextViewLikes.setText("Price: " + likeCount);
-            ViewHolderOne.mTextViewOrders.setText("Orders: " + orderCount);
+            ViewHolderOne.mTextViewLikes.setText(likeCount);
+            ViewHolderOne.mTextViewOrders.setText("\uD83D\uDE9A"+ orderCount + " Orders");
 
             int i = mContext.getResources().getIdentifier(
                     currentItem.getImagefilename(), "drawable",
@@ -89,8 +89,8 @@ public class ExampleAdapter extends RecyclerView.Adapter implements Filterable {
         }else {
             ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
             viewHolderTwo.mTextViewCreator.setText(creatorName);
-            viewHolderTwo.mTextViewLikes.setText("Price: " + likeCount);
-            viewHolderTwo.mTextViewOrders.setText("Orders: " + orderCount);
+            viewHolderTwo.mTextViewLikes.setText(likeCount);
+            viewHolderTwo.mTextViewOrders.setText("\uD83D\uDE9A"+ orderCount + " Orders");
 
             int i = mContext.getResources().getIdentifier(
                     currentItem.getImagefilename(), "drawable",

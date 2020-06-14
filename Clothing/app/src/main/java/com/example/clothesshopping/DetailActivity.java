@@ -31,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView textViewDesc = findViewById(R.id.text_view_desc_detail);
 
         textViewClotheName.setText(clotheName);
-        textViewPrice.setText("\uD83D\uDCB8" + price);
+        textViewPrice.setText(price);
         textViewOrders.setText("\uD83D\uDE9A"+ orders + " Orders");
         textViewDesc.setText(desc);
 
@@ -47,5 +47,7 @@ public class DetailActivity extends AppCompatActivity {
             imageView.setImageResource(i);
         }
     };
+
+
 
 }

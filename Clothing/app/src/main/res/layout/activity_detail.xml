@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               tools:context="com.example.clothesshopping.DetailActivity"
-              android:scrollbars="vertical">
+              android:scrollbars="vertical" android:layout_gravity="center">
     <!-- <ImageView
             android:id="@+id/image_view_detail"
             android:layout_width="match_parent"
@@ -14,10 +14,10 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        <LinearLayout android:layout_width="408dp" android:layout_height="wrap_content"
                       android:orientation="vertical"
                       android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
-                      android:layout_marginRight="16dp">
+                      android:layout_marginRight="16dp" android:layout_gravity="center_horizontal">
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" app:cardCornerRadius="6dp">
@@ -37,7 +37,7 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_marginTop="16dp">
+                    android:layout_height="wrap_content" android:layout_marginTop="16dp">
                 <TextView
                         android:id="@+id/text_view_creator_detail"
                         android:layout_width="wrap_content"

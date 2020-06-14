@@ -77,7 +77,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"bottom_" + String.valueOf(i+2), "bottom_" + String.valueOf(i+1), "bottom_" + String.valueOf(i)};
             String name = "\uD83D\uDC56" + (String) BottomsName.get(index);
-            String price = "$" +(String) BottomsPrice.get(index);
+            String price = "\uD83D\uDCB8" + "$" +(String) BottomsPrice.get(index);
             Integer orders = (Integer) BottomsOrders.get(index);
             String desc = (String) BottomsDesc.get(index);
             ClothingItem c =new ClothingItem(images, name, price, orders, desc);
@@ -158,7 +158,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"top_" + String.valueOf(i+2), "top_" + String.valueOf(i+1), "top_" + String.valueOf(i)};
             String name = 	"\uD83D\uDC5A" + (String) TopNames.get(index);
-            String price = "$" + (String) TopPrices.get(index);
+            String price = "\uD83D\uDCB8" +"$" + (String) TopPrices.get(index);
             Integer orders = (Integer) TopOrders.get(index);
             String desc = (String) TopDesc.get(index);
             ClothingItem c =new ClothingItem(images, name, price, orders, desc);
@@ -237,7 +237,7 @@ public class DataProvider {
         {
             String[] images = new String[]{"dress_" + String.valueOf(i+2), "dress_" + String.valueOf(i+1), "dress_" + String.valueOf(i)};
             String name = "\uD83D\uDC57" + (String) DressNames.get(index);
-            String price = "$" + (String) DressPrices.get(index);
+            String price = "\uD83D\uDCB8" +"$" + (String) DressPrices.get(index);
             Integer orders = (Integer) DressOrders.get(index);
             String desc = (String) DressDesc.get(index);
             ClothingItem c =new ClothingItem(images, name, price, orders, desc);
