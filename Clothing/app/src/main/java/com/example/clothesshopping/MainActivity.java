@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements TopPicks_Adapter.
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_foreground);
 
         TopPicks = getTopPicks();
         mHorizontalRecyclerView = findViewById(R.id.horizontal_recycler_view);
